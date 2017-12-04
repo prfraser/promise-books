@@ -163,14 +163,42 @@ let Author = require('./models/author');
 // })
 
 
-Author.create({ name: 'Georgey Boy2'})
-	.then((response) => {
-		Book.create({ 
-		  	name: 'A Game of Thrones', 
-		  	author: response._id, 
-		  	description: 'cool book' })
-			.then((response) => {
-				console.log(response)
-			})
-	})
+// Author.create({ name: 'Georgey Boy2'})
+// 	.then((response) => {
+// 		Book.create({ 
+// 		  	name: 'A Game of Thrones', 
+// 		  	author: response._id, 
+// 		  	description: 'cool book' })
+// 			.then((response) => {
+// 				console.log(response)
+// 			})
+// 	})
+// 	.catch(err => console.log(err))
 
+// Book.find().populate('author').then((response) => console.log(response)).catch(err => console.log(err))
+
+// async function bookAuthorCreate() {
+// 	try {
+// 	const author = await Author.create({ name: 'Georgey Boy'})
+// 	const book = await Book.create({ 
+// 		  	name: 'A Game of Thrones', 
+// 		  	author: author._id, 
+// 		  	description: 'cool book' })
+// 	console.log(author)
+// 	console.log(book)
+// 	} catch (err) {
+// 		console.log(err)
+// 	}
+// }
+// bookAuthorCreate()
+
+async function findPopulatedBooks() {
+	try {
+		const books = await Book.find().populate('author')
+		console.log(books)
+	} catch (err) {
+		console.log(err)
+	}
+}
+
+findPopulatedBooks()
