@@ -23,30 +23,72 @@ let Book = require('./models/book');
 // 	console.log(response)
 // })
 
-Book.create({ 
-	name: 'Book 1', 
-	author: 'George RR Martin', 
-	description: 'cool book' }, (error, response) => {
-  console.log(response)
-  if (error){
-  	console.log(error)
-  	return;
-  }
-		Book.find((err, response) => {
-			console.log(response)
-			if (error){
-				console.log(err)
-				return;
-			}
-			Book.findOneAndUpdate(
-			   { "name" : "Book 1" },
-			   { "name" : "Book 2" }, (err, response) => {
-				console.log(response)
-				if (error){
-					console.log(err)
-					return;
-				}
-			})
-	  }
+// Book.create({ 
+// 	name: 'Book 1', 
+// 	author: 'George RR Martin', 
+// 	description: 'cool book' }, (error, response) => {
+//   console.log(response)
+//   if (error){
+//   	console.log(error)
+//   	return;
+//   }
+// 		Book.find((err, response) => {
+// 			console.log(response)
+// 			if (error){
+// 				console.log(err)
+// 				return;
+// 			}
+// 			Book.findOneAndUpdate(
+// 			   { "name" : "Book 1" },
+// 			   { "name" : "Book 2" }, (err, response) => {
+// 				console.log(response)
+// 				if (error){
+// 					console.log(err)
+// 					return;
+// 				}
+// 			})
+// 	  }
+// 	})
+// });
+
+// Book.create({ 
+// 	name: 'A Game of Thrones', 
+// 	author: 'George RR Martin', 
+// 	description: 'cool book' })
+// 	.then(res => console.log(res))
+// 	.catch(err => console.log(err))
+
+// Book.find()
+// 	.then(res => console.log(res))
+// 	.catch(err => console.log(err))
+
+// Book.findOneAndUpdate(
+//    { "name" : "A Game of Thrones" },
+//    { "name" : "A Song of Ice and Fire" })
+//    	.then(res => console.log(res))
+//    	.catch(err => console.log(err))
+
+// Book.findOneAndRemove(
+//    { "name" : "A Song of Ice and Fire" })
+//    .then(res => console.log(res))
+//    .catch(err => console.log(err))
+
+Promise.all([
+		Book.create({ 
+		name: 'Cool Book', 
+		author: 'George RR Martin', 
+		description: 'cool book' }),
+		Book.find(),
+		Book.findOneAndUpdate(
+		   { "name" : "Cool Book" },
+		   { "name" : "Really Cool Book" }),
+		Book.findOneAndRemove(
+	   { "name" : "Really Cool Book" }),
+		Book.find()
+	]).then(([res1, res2, res3, res4, res5]) => {
+		console.log(res1)
+		console.log(res2)
+		console.log(res3)
+		console.log(res4)
+		console.log(res5)
 	})
-});
