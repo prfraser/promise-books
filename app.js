@@ -23,3 +23,30 @@ let Book = require('./models/book');
 // 	console.log(response)
 // })
 
+Book.create({ 
+	name: 'Book 1', 
+	author: 'George RR Martin', 
+	description: 'cool book' }, (error, response) => {
+  console.log(response)
+  if (error){
+  	console.log(error)
+  	return;
+  }
+		Book.find((err, response) => {
+			console.log(response)
+			if (error){
+				console.log(err)
+				return;
+			}
+			Book.findOneAndUpdate(
+			   { "name" : "Book 1" },
+			   { "name" : "Book 2" }, (err, response) => {
+				console.log(response)
+				if (error){
+					console.log(err)
+					return;
+				}
+			})
+	  }
+	})
+});
