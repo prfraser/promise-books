@@ -1,5 +1,6 @@
 // const express = require('express');
 let Book = require('./models/book');
+let Author = require('./models/author');
 
 // Book.create({ 
 // 	name: 'A Game of Thrones', 
@@ -128,3 +129,48 @@ let Book = require('./models/book');
 // 	}
 // }
 // updateBook()
+
+// async function deleteBook() {
+// 	try {
+// 		const deleteBook = await Book.findOneAndRemove({ "name" : "A Song of Ice and Fire" })
+// 		console.log(deleteBook)
+// 	} catch (err) {
+// 		console.log(err)
+// 	}
+// }
+// deleteBook()
+
+// Author.create(({ name: 'Georgey Boy'}), (error, response) => {
+// 	if (error){
+//   	console.log(error)
+//   	return;
+//   }
+//   console.log(response)
+//   Book.create({ 
+//   	name: 'A Game of Thrones', 
+//   	author: response._id, 
+//   	description: 'cool book' }, (error, response) => {
+//   		if (error){
+// 	  	console.log(error)
+// 	  	return;
+// 	  }
+// 	    console.log(response)
+//   });
+// })
+
+// Book.find().populate('author').exec((err, response) => {
+// 	console.log(response)
+// })
+
+
+Author.create({ name: 'Georgey Boy2'})
+	.then((response) => {
+		Book.create({ 
+		  	name: 'A Game of Thrones', 
+		  	author: response._id, 
+		  	description: 'cool book' })
+			.then((response) => {
+				console.log(response)
+			})
+	})
+
