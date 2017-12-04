@@ -6,7 +6,6 @@ let Book = require('./models/book');
 // 	author: 'George RR Martin', 
 // 	description: 'cool book' }, (error, response) => {
 //   console.log(response)
-
 // });
 
 // Book.find((err, response) => {
@@ -18,3 +17,9 @@ let Book = require('./models/book');
 //    { "name" : "A Song of Ice and Fire" }, (err, response) => {
 // 	console.log(response)
 // })
+
+// Book.findOneAndRemove(
+//    { "name" : "A Game of Thrones" }, (err, response) => {
+// 	console.log(response)
+// })
+
